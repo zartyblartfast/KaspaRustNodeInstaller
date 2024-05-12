@@ -34,7 +34,7 @@ set "NAME2=%DIRECTORY%\ascii_art.txt"
 set "FILE3=https://raw.githubusercontent.com/zartyblartfast/KaspaRustNodeInstaller/main/header.txt"
 set "NAME3=%DIRECTORY%\header.txt"
 
-set "FILE4=https://raw.githubusercontent.com/zartyblartfast/KaspaRustNodeInstaller/main/readme.md"
+set "FILE4=https://github.com/zartyblartfast/KaspaRustNodeInstaller/raw/main/README.md"
 set "NAME4=%DIRECTORY%\readme.md"
 
 
@@ -55,4 +55,6 @@ for %%i in (%FILES%) do (
 )
 
 endlocal
+
+powershell -File "%DIRECTORY%\RustyKaspaInstall.ps1"
 pause
