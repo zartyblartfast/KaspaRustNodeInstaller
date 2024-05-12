@@ -58,5 +58,8 @@ for %%i in (%FILES%) do (
 
 endlocal
 
+@echo off
+PowerShell -ExecutionPolicy Bypass -File C:\KaspaNode\RustyKaspaInstall.ps1
+
 powershell -File "%DIRECTORY%\RustyKaspaInstall.ps1"
 pause
