@@ -37,9 +37,11 @@ set "NAME3=%DIRECTORY%\header.txt"
 set "FILE4=https://github.com/zartyblartfast/KaspaRustNodeInstaller/raw/main/README.md"
 set "NAME4=%DIRECTORY%\readme.md"
 
+set "FILE5=https://github.com/zartyblartfast/KaspaRustNodeInstaller/raw/main/RunKaspaNode.bat"
+set "NAME5=%DIRECTORY%\RunKaspaNode.bat"
 
 REM Array of file names for easier access in loop (optional, for multiple files)
-set "FILES=1 2 3 4"
+set "FILES=1 2 3 4 5"
 
 for %%i in (%FILES%) do (
     set "CUR_FILE=!FILE%%i!"
