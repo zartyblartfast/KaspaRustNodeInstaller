@@ -58,16 +58,6 @@ for %%i in (%FILES%) do (
 
 endlocal
 
-echo Setting Execution Policy to RemoteSigned for installation.
-PowerShell -Command "Set-ExecutionPolicy RemoteSigned -Scope CurrentUser -Force"
-echo Execution Policy set.
-
-PowerShell -ExecutionPolicy Bypass -File %DIRECTORY%\RustyKaspaInstall.ps1
-
 powershell -File "%DIRECTORY%\RustyKaspaInstall.ps1"
-
-echo Reverting Execution Policy to Restricted.
-PowerShell -Command "Set-ExecutionPolicy Restricted -Scope CurrentUser -Force"
-echo Execution Policy reverted to Restricted.
 
 pause
