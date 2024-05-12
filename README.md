@@ -1,2 +1,45 @@
 # KaspaRustNodeInstaller
 Powershell script to simplify installing the required components for the Kaspa Rust Node on Windows
+## SYNOPSIS
+    Installation script for the Rusty Kaspa environment.
+
+## DESCRIPTION
+    This script automates the setup of the necessary development environment for Rusty Kaspa.
+    It installs and configures Git, Protocol Buffers, LLVM, Rust toolchain, and wasm-pack.
+    Additionally, it prepares the system to build and run the Kaspa node.
+
+    Default installation directory is 'C:\KaspaNode'. This directory or the one specified by -rootFolder
+    will be used as the root for all installations. Use the -rootFolder parameter to specify a different location.
+    
+    Example: PS> .\installation_script.ps1 -rootFolder "D:\MyKaspaNode"
+
+    A batch file named 'rustyKaspa.bat' is created in the root folder for easy startup of the Kaspa node.
+    To run the node, navigate to the root folder, right-click 'rustyKaspa.bat', and select 'Run as administrator'.
+    This ensures all necessary permissions are available for node operation.
+
+    If errors occur during script execution, refer to 'installation_log.txt' in the root folder for detailed logs
+    and error messages that can assist in troubleshooting.
+
+    For further details and the latest updates, visit the GitHub repository:
+    https://github.com/kaspanet/rusty-kaspa
+
+## EXAMPLE
+    PS> .\installation_script.ps1
+    Runs the installation script using the default root folder ('C:\KaspaNode').
+
+## EXAMPLE
+    PS> .\installation_script.ps1 -rootFolder "D:\MyKaspaNode"
+    Runs the installation script using a custom root folder specified by the user.
+
+## PARAMETER rootFolder
+    Specifies the root directory where the Kaspa node environment will be set up.
+    Default is 'C:\KaspaNode'.
+
+## NOTES
+    Author: Your Name
+    Date: Insert the current date
+    This script requires administrative privileges for some installations.
+
+## LINK
+    GitHub Repository: https://github.com/kaspanet/rusty-kaspa
+ 
