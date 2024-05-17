@@ -67,11 +67,11 @@ set "NAME13=%DIRECTORY%\header.txt"
 set "FILE14=https://github.com/zartyblartfast/KaspaRustNodeInstaller/raw/main/README.md"
 set "NAME14=%DIRECTORY%\readme.md"
 
-set "FILE14=https://raw.githubusercontent.com/zartyblartfast/KaspaRustNodeInstaller/main/RunKaspaNode.bat"
-set "NAME14=%DIRECTORY%\RunKaspaNode.bat"
+set "FILE15=https://raw.githubusercontent.com/zartyblartfast/KaspaRustNodeInstaller/main/RunKaspaNode.bat"
+set "NAME15=%DIRECTORY%\RunKaspaNode.bat"
 
 REM Array of file names for easier access in loop (optional, for multiple files)
-set "FILES=1 2 3 4 5 6 7 8 9 10 11 12 13 14"
+set "FILES=1 2 3 4 5 6 7 8 9 10 11 12 13 14 15"
 
 for %%i in (%FILES%) do (
     set "CUR_FILE=!FILE%%i!"
