@@ -55,17 +55,17 @@ set "NAME9=%DIRECTORY%\InstallWasmPack.psm1"
 set "FILE10=https://raw.githubusercontent.com/zartyblartfast/KaspaRustNodeInstaller/main/RustInstaller.psm1"
 set "NAME10=%DIRECTORY%\RustInstaller.psm1"
 
-set "FILE10=https://raw.githubusercontent.com/zartyblartfast/KaspaRustNodeInstaller/main/Utility.psm1"
-set "NAME10=%DIRECTORY%\Utility.psm1"
+set "FILE11=https://raw.githubusercontent.com/zartyblartfast/KaspaRustNodeInstaller/main/Utility.psm1"
+set "NAME11=%DIRECTORY%\Utility.psm1"
 
-set "FILE11=https://raw.githubusercontent.com/zartyblartfast/KaspaRustNodeInstaller/main/ascii_art.txt"
-set "NAME11=%DIRECTORY%\ascii_art.txt"
+set "FILE12=https://raw.githubusercontent.com/zartyblartfast/KaspaRustNodeInstaller/main/ascii_art.txt"
+set "NAME12=%DIRECTORY%\ascii_art.txt"
 
-set "FILE12=https://raw.githubusercontent.com/zartyblartfast/KaspaRustNodeInstaller/main/header.txt"
-set "NAME12=%DIRECTORY%\header.txt"
+set "FILE13=https://raw.githubusercontent.com/zartyblartfast/KaspaRustNodeInstaller/main/header.txt"
+set "NAME13=%DIRECTORY%\header.txt"
 
-set "FILE13=https://github.com/zartyblartfast/KaspaRustNodeInstaller/raw/main/README.md"
-set "NAME13=%DIRECTORY%\readme.md"
+set "FILE14=https://github.com/zartyblartfast/KaspaRustNodeInstaller/raw/main/README.md"
+set "NAME14=%DIRECTORY%\readme.md"
 
 set "FILE14=https://raw.githubusercontent.com/zartyblartfast/KaspaRustNodeInstaller/main/RunKaspaNode.bat"
 set "NAME14=%DIRECTORY%\RunKaspaNode.bat"
