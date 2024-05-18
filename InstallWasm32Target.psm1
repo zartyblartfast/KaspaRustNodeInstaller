@@ -1,6 +1,9 @@
-﻿# Install Wasm32 Target Module
+# Install Wasm32 Target Module
 
 function InstallWasm32Target {
+    param (
+        [string]$rootFolder
+    )
     write-output "****** InstallWasm32Target Function ******"
 
     $rustupPath = Join-Path -Path $env:USERPROFILE -ChildPath ".cargo\bin\rustup.exe"
