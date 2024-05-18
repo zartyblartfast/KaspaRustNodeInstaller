@@ -1,0 +1,18 @@
+{
+    "Git": {
+        "url": "https://gitforwindows.org/"
+    },
+    "ProtocolBuffers": {
+        "url": "https://github.com/protocolbuffers/protobuf/releases/download/v21.10/protoc-21.10-win64.zip"
+    },
+    "LLVM": {
+        "url": "https://github.com/llvm/llvm-project/releases/download/llvmorg-15.0.6/LLVM-15.0.6-win64.exe"
+    },
+    "Rust": {
+        "url": "https://rustup.rs/"
+    },
+    "VisualStudioBuildTools": {
+        "url": "https://aka.ms/vs/16/release/vs_buildtools.exe"
+    }
+}
+
