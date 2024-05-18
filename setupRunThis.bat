@@ -11,7 +11,6 @@ if %errorlevel% == 0 (
     exit
 )
 
-
 set "DIRECTORY=C:\KaspaNode"
 
 if not exist "%DIRECTORY%" (
@@ -20,7 +19,6 @@ if not exist "%DIRECTORY%" (
 ) else (
     echo Directory already exists: %DIRECTORY%
 )
-
 
 setlocal enabledelayedexpansion
 
@@ -91,6 +89,11 @@ for %%i in (%FILES%) do (
 
 endlocal
 
-rem powershell -File "%DIRECTORY%\RustyKaspaInstall.ps1"
+:: Set PowerShell execution policy for the current session
+powershell -Command "Set-ExecutionPolicy -Scope Process -ExecutionPolicy RemoteSigned -Force"
+
+:: Run the PowerShell script
+powershell -File "%DIRECTORY%\RustyKaspaInstall.ps1"
 
 pause
+
