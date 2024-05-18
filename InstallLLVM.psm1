@@ -1,12 +1,15 @@
-﻿
 # Function to install LLVM and configure environment variables
 function InstallLLVM {
-
     write-output "****** Install-LLVM Function ******"
 
-    $llvmExePath = "C:\Program Files\LLVM\bin\clang.exe"
-    $llvmArPath = "C:\Program Files\LLVM\bin\LLVM-AR.exe"
-    $arPath = "C:\Program Files\LLVM\bin\AR.exe"
+    # Load configuration
+    $configFilePath = Join-Path -Path $rootFolder -ChildPath "install_config.json"
+    $config = Get-Content -Raw -Path $configFilePath | ConvertFrom-Json
+
+    $url = $config.LLVM.url
+    $llvmExePath = "C:\\Program Files\\LLVM\\bin\\clang.exe"
+    $llvmArPath = "C:\\Program Files\\LLVM\\bin\\LLVM-AR.exe"
+    $arPath = "C:\\Program Files\\LLVM\\bin\\AR.exe"
     
     LogMessage "Check if LLVM is installed by checking for clang.exe. Path: $llvmExePath"
     if (Test-Path $llvmExePath) {
@@ -15,15 +18,15 @@ function InstallLLVM {
     } else {
         Write-Output "LLVM is not installed. Installing now..."
         LogMessage "LLVM is not installed. Installing now..."
-
-        $url = "https://github.com/llvm/llvm-project/releases/download/llvmorg-15.0.6/LLVM-15.0.6-win64.exe"
-        $output = "$env:TEMP\LLVM-Installer.exe"
+        
+        $output = "$env:TEMP\\LLVM-Installer.exe"
         
         LogMessage "Downloading LLVM Installation file: $url"
         try {
             Invoke-WebRequest -Uri $url -OutFile $output
         } catch {
             LogMessage "Download of LLVM Installation file failed: $_"
+            Write-Output "Error: Failed to download LLVM Installation file. Check the log for details."
             return
         }
 
@@ -32,6 +35,7 @@ function InstallLLVM {
             Start-Process -FilePath $output -Args "/S" -Wait -NoNewWindow
         } catch {
             LogMessage "LLVM Installation failed: $_"
+            Write-Output "Error: Failed to install LLVM. Check the log for details."
             return
         }
 
@@ -55,11 +59,11 @@ function InstallLLVM {
         LogMessage "LLVM-AR.exe not found, no renaming necessary."
     }
 
-    $llvmBinPath = "C:\Program Files\LLVM\bin"
+    $llvmBinPath = "C:\\Program Files\\LLVM\\bin"
     LogMessage "Set LIBCLANG_PATH and add LLVM bin to PATH: $llvmBinPath"
     [Environment]::SetEnvironmentVariable("LIBCLANG_PATH", $llvmBinPath, [EnvironmentVariableTarget]::Machine)
 
     Add-ToSystemPath -pathToAdd $llvmBinPath
 }
 
-Export-ModuleMember -Function InstallLLVM 
+Export-ModuleMember -Function InstallLLVM
