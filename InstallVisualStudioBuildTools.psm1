@@ -1,9 +1,12 @@
-﻿# Install Visual Studio Build Tools Module
-
+# Install Visual Studio Build Tools Module
 function InstallVisualStudioBuildTools {
-
     write-output "****** InstallVisualStudioBuildTools Function ******"
 
+    # Load configuration
+    $configFilePath = Join-Path -Path $rootFolder -ChildPath "install_config.json"
+    $config = Get-Content -Raw -Path $configFilePath | ConvertFrom-Json
+
+    $url = $config.VisualStudioBuildTools.url
     $linkExePathPattern = 'C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\VC\Tools\MSVC\*\bin\Hostx64\x64\link.exe'
     
     LogMessage "Check if link.exe exists using the default path..."
@@ -11,26 +14,32 @@ function InstallVisualStudioBuildTools {
         Write-Output "MSVC Build Tools or 'link.exe' not found. Proceeding with installation..."
         LogMessage "MSVC Build Tools or 'link.exe' not found. Proceeding with installation..."
 
-        $url = "https://aka.ms/vs/16/release/vs_buildtools.exe"
-        $installerPath = "$env:TEMP\vs_buildtools.exe"
+        $installerPath = "$env:TEMP\\vs_buildtools.exe"
         
-        Invoke-WebRequest -Uri $url -OutFile $installerPath = "$env:TEMP\vs_buildtools.exe"
-        
-        Invoke-WebRequest -Uri $url -OutFile $installerPath
-        Write-Output "Downloaded Visual Studio Build Tools installer to $installerPath"
-        LogMessage "Downloaded Visual Studio Build Tools installer to $installerPath"
+        LogMessage "Downloading Visual Studio Build Tools installer..."
+        try {
+            Invoke-WebRequest -Uri $url -OutFile $installerPath
+            Write-Output "Downloaded Visual Studio Build Tools installer to $installerPath"
+            LogMessage "Downloaded Visual Studio Build Tools installer to $installerPath"
+        } catch {
+            LogMessage "Error downloading Visual Studio Build Tools installer: $_"
+            Write-Output "Error downloading Visual Studio Build Tools installer: $_"
+            return
+        }
 
         $args = "--quiet --wait --norestart --nocache " +
                 "--add Microsoft.VisualStudio.Workload.NativeDesktop " +
                 "--add Microsoft.VisualStudio.Component.VC.Tools.x86.x64 " +
                 "--add Microsoft.VisualStudio.Component.Windows10SDK.19041"
 
-        LogMessage "Execute the installer"
+        LogMessage "Executing the installer"
         try {
             Start-Process -FilePath $installerPath -ArgumentList $args -Wait
-        } catch {
             Write-Output "Installation of Visual Studio Build Tools completed."
             LogMessage "Installation of Visual Studio Build Tools completed."
+        } catch {
+            LogMessage "Error during installation of Visual Studio Build Tools: $_"
+            Write-Output "Error during installation of Visual Studio Build Tools: $_"
         }
 
         Remove-Item -Path $installerPath
@@ -39,4 +48,5 @@ function InstallVisualStudioBuildTools {
         LogMessage "MSVC Build Tools are correctly installed. 'link.exe' found."
     }
 }
+
 Export-ModuleMember -Function InstallVisualStudioBuildTools
