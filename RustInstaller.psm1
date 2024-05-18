@@ -1,3 +1,4 @@
+# Function to install or update Rust programming language toolchain
 function InstallUpdateRust {
     <#
     .SYNOPSIS
@@ -23,6 +24,11 @@ function InstallUpdateRust {
     #>
     Write-Output "****** InstallUpdateRust Function ******"
 
+    # Load configuration
+    $configFilePath = Join-Path -Path $rootFolder -ChildPath "install_config.json"
+    $config = Get-Content -Raw -Path $configFilePath | ConvertFrom-Json
+
+    $url = $config.Rust.url
     $rustInstallDir = Join-Path -Path $env:USERPROFILE -ChildPath ".cargo"
     $cargoBinPath = Join-Path -Path $rustInstallDir -ChildPath "bin"
     $rustcPath = Join-Path -Path $cargoBinPath -ChildPath "rustc.exe"
@@ -44,8 +50,8 @@ function InstallUpdateRust {
     } else {
         Write-Output "Rust is not installed. Installing now..."
         LogMessage "Rust is not installed. Installing now..."
-        $url = "https://win.rustup.rs"
-        $output = "$env:TEMP\rustup-init.exe"
+        
+        $output = "$env:TEMP\\rustup-init.exe"
         try {
             Invoke-WebRequest -Uri $url -OutFile $output
             $installArgs = "--default-toolchain stable --profile minimal --no-modify-path -y"
@@ -63,7 +69,6 @@ function InstallUpdateRust {
 
         # Verify installation
         if (Test-Path $rustcPath) {
-            Write-Output "Rust installed successfully."
             Write-Output "Rust installed successfully."
             LogMessage "Rust installed successfully."
             Add-ToUserPath -pathToAdd $cargoBinPath
