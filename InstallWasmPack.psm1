@@ -1,8 +1,8 @@
-﻿
-# Function to install wasm-pack using Cargo
 # Function to install wasm-pack using Cargo
 function InstallWasmPack {
-
+    param (
+        [string]$rootFolder
+    )
     Write-Output "****** InstallWasmPack Function ******"
 
     $wasmPackExecutable = Join-Path -Path $env:USERPROFILE -ChildPath ".cargo\bin\wasm-pack.exe"
