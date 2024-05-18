@@ -1,5 +1,8 @@
 # Install Visual Studio Build Tools Module
 function InstallVisualStudioBuildTools {
+    param (
+        [string]$rootFolder
+    )
     write-output "****** InstallVisualStudioBuildTools Function ******"
 
     # Load configuration
