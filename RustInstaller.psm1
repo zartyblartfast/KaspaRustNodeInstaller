@@ -1,4 +1,26 @@
 function InstallUpdateRust {
+    <#
+    .SYNOPSIS
+    Installs or updates the Rust programming language toolchain.
+
+    .DESCRIPTION
+    This function installs or updates the Rust programming language toolchain. It checks if Rust is already installed,
+    and if so, updates it to the latest version. If Rust is not installed, it installs it using the `rustup-init` installer.
+    
+    Rust is installed to the user-specific directory (C:\Users\<username>\.cargo) instead of the system-wide directory.
+    This is because the `rustup-init` installer does not support installing to a custom system-wide directory directly,
+    and managing user-specific installations is simpler and avoids potential permission issues on multi-user systems.
+
+    The function also ensures that the Cargo bin path is added to the user PATH environment variable if it is not already present.
+
+    .NOTES
+    Ensure the script is run with appropriate permissions to modify the user PATH environment variable.
+
+    .EXAMPLE
+    InstallUpdateRust
+
+    This will install or update Rust in the user-specific directory and update the user PATH environment variable.
+    #>
     Write-Output "****** InstallUpdateRust Function ******"
 
     $rustInstallDir = Join-Path -Path $env:USERPROFILE -ChildPath ".cargo"
