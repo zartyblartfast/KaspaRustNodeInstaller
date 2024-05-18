@@ -70,8 +70,11 @@ set "NAME14=%DIRECTORY%\readme.md"
 set "FILE15=https://raw.githubusercontent.com/zartyblartfast/KaspaRustNodeInstaller/main/RunKaspaNode.bat"
 set "NAME15=%DIRECTORY%\RunKaspaNode.bat"
 
+set "FILE16=https://raw.githubusercontent.com/zartyblartfast/KaspaRustNodeInstaller/main/install_config.json"
+set "NAME16=%DIRECTORY%\install_config.json"
+
 REM Array of file names for easier access in loop (optional, for multiple files)
-set "FILES=1 2 3 4 5 6 7 8 9 10 11 12 13 14 15"
+set "FILES=1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16"
 
 for %%i in (%FILES%) do (
     set "CUR_FILE=!FILE%%i!"
