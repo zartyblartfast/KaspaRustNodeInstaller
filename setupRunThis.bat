@@ -2,13 +2,22 @@
 
 :: Check for administrator privileges
 net session >nul 2>&1
-if %errorlevel% == 0 (
-    echo Running with administrative privileges
-    rem powershell -File "C:\path\to\your\script.ps1"
+if %errorlevel% neq 0 (
+    echo ********************************************************
+    echo *** This script must be run as Administrator! 
+    echo *** 
+    echo *** To run as Administrator:
+    echo *** 1. Open File Explorer or use the Search bar.
+    echo *** 2. Locate the file 'setupRunThis.bat'.
+    echo *** 3. Right-click on 'setupRunThis.bat'.
+    echo *** 4. Select 'Run as administrator'.
+    echo *** 
+    echo *** Exiting...
+    echo ********************************************************
+    pause
+    exit /b 1
 ) else (
-    echo Requesting administrative privileges...
-    powershell -Command "Start-Process cmd -ArgumentList '/c %~0' -Verb runAs" >nul
-    exit
+    echo Running with administrative privileges
 )
 
 set "DIRECTORY=C:\KaspaNode"
@@ -21,6 +30,8 @@ if not exist "%DIRECTORY%" (
 )
 
 setlocal enabledelayedexpansion
+
+echo 2_The current batch file is: %~0
 
 REM Define file URLs and their respective names
 set "FILE1=https://raw.githubusercontent.com/zartyblartfast/KaspaRustNodeInstaller/main/RustyKaspaInstall.ps1"
@@ -78,7 +89,8 @@ for %%i in (%FILES%) do (
     set "CUR_FILE=!FILE%%i!"
     set "CUR_NAME=!NAME%%i!"
     
-    echo Downloading !CUR_NAME! from !CUR_FILE!
+    echo %%i - Downloading !CUR_NAME! to %DIRECTORY%
+
     curl -L -o "!CUR_NAME!" "!CUR_FILE!"
     if !ERRORLEVEL! neq 0 (
         echo Failed to download !CUR_NAME!
@@ -89,11 +101,17 @@ for %%i in (%FILES%) do (
 
 endlocal
 
-:: Set PowerShell execution policy for the current session
-powershell -Command "Set-ExecutionPolicy -Scope Process -ExecutionPolicy RemoteSigned -Force"
+:: Set PowerShell execution policy and run the script in one command
+echo Setting PowerShell execution policy to RemoteSigned and running the script...
+powershell -Command "Set-ExecutionPolicy -Scope Process -ExecutionPolicy RemoteSigned -Force; & '%DIRECTORY%\RustyKaspaInstall.ps1'" > "%DIRECTORY%\runpowershell.log" 2>&1
 
-:: Run the PowerShell script
-powershell -File "%DIRECTORY%\RustyKaspaInstall.ps1"
+echo PowerShell Script Execution Output:
+type "%DIRECTORY%\runpowershell.log"
+if %ERRORLEVEL% neq 0 (
+    echo Failed to run the PowerShell script
+    exit /b 1
+) else (
+    echo PowerShell script RustyKaspaInstall.ps1 executed successfully
+)
 
 pause
-
