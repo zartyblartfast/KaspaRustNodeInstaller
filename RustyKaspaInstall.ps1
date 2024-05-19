@@ -9,7 +9,7 @@ $logFile = Join-Path -Path $rootFolder -ChildPath "installation_log.txt"
 $headerTextPath = Join-Path -Path $rootFolder -ChildPath "header.txt"
 
 
-# Import Utility Module
+# Import Common Module
 Import-Module -Name "$rootFolder\Common.psm1"
 
 # Import Install Git Module
