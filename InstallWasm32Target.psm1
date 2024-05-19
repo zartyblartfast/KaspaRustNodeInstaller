@@ -2,7 +2,8 @@
 
 function InstallWasm32Target {
     param (
-        [string]$rootFolder
+        [string]$rootFolder,
+        [string]$logFile
     )
     write-output "****** InstallWasm32Target Function ******"
 
