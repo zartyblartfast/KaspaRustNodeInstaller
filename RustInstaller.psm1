@@ -38,22 +38,22 @@ function InstallUpdateRust {
     $rustcPath = Join-Path -Path $cargoBinPath -ChildPath "rustc.exe"
     $rustupPath = Join-Path -Path $cargoBinPath -ChildPath "rustup.exe"
 
-    LogMessage "Check rustc Path: $rustcPath"
-    LogMessage "Check rustup Path: $rustupPath"
+    & LogMessage "Check rustc Path: $rustcPath"
+    & LogMessage "Check rustup Path: $rustupPath"
 
     if (Test-Path $rustcPath) {
         try {
             $rustcVersion = & $rustcPath --version
             Write-Output "Rust is already installed: $rustcVersion. Updating now..."
-            LogMessage "Rust is already installed: $rustcVersion. Updating now..."
+            & LogMessage "Rust is already installed: $rustcVersion. Updating now..."
             & $rustupPath update 2>$null
         } catch {
             Write-Output "An error occurred while trying to update Rust: $_"
-            LogMessage "An error occurred while trying to update Rust: $_"
+            & LogMessage "An error occurred while trying to update Rust: $_"
         }
     } else {
         Write-Output "Rust is not installed. Installing now..."
-        LogMessage "Rust is not installed. Installing now..."
+        & LogMessage "Rust is not installed. Installing now..."
         
         $output = "$env:TEMP\\rustup-init.exe"
         try {
@@ -65,7 +65,7 @@ function InstallUpdateRust {
             Write-Output "rustup-init.exe completed."
 
         } catch {
-            LogMessage "Error installing Rust: $_"
+            & LogMessage "Error installing Rust: $_"
             Write-Output "Error installing Rust: $_"
             return
         }
@@ -74,11 +74,11 @@ function InstallUpdateRust {
         # Verify installation
         if (Test-Path $rustcPath) {
             Write-Output "Rust installed successfully."
-            LogMessage "Rust installed successfully."
+            & LogMessage "Rust installed successfully."
             Add-ToUserPath -pathToAdd $cargoBinPath
         } else {
             Write-Output "Rust installation failed. rustc.exe not found at $rustcPath"
-            LogMessage "Rust installation failed. rustc.exe not found at $rustcPath"
+            & LogMessage "Rust installation failed. rustc.exe not found at $rustcPath"
         }
     }
 
@@ -92,7 +92,7 @@ function Add-ToUserPath {
         [string]$pathToAdd
     )
     Write-Output "****** Add-ToUserPath Function ******"
-    LogMessage "Checking Path environment variable for: $pathToAdd"
+    & LogMessage "Checking Path environment variable for: $pathToAdd"
 
     $userPath = [System.Environment]::GetEnvironmentVariable("Path", [System.EnvironmentVariableTarget]::User)
 
@@ -100,10 +100,10 @@ function Add-ToUserPath {
         $newUserPath = "$userPath;$pathToAdd"
         [System.Environment]::SetEnvironmentVariable("Path", $newUserPath, [System.EnvironmentVariableTarget]::User)
         Write-Output "Added '$pathToAdd' to user PATH."
-        LogMessage "Added '$pathToAdd' to user PATH."
+        & LogMessage "Added '$pathToAdd' to user PATH."
     } else {
         Write-Output "'$pathToAdd' is already in user PATH."
-        LogMessage "'$pathToAdd' is already in user PATH."
+        & LogMessage "'$pathToAdd' is already in user PATH."
     }
 }
 
