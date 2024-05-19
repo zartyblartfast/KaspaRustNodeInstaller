@@ -1,7 +1,8 @@
 # Function to install or update Rust programming language toolchain
 function InstallUpdateRust {
     param (
-        [string]$rootFolder
+        [string]$rootFolder,
+        [string]$logFile
     )
     <#
     .SYNOPSIS
