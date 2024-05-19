@@ -17,32 +17,32 @@ function Install-Git {
     try {
         $gitVersion = git --version
         Write-Output "Git is already installed: $gitVersion"
-        & LogMessage "Git is already installed: $gitVersion"
+        LogMessage -message  "Git is already installed: $gitVersion" -logFile $logFile
         return
     } catch {
         Write-Output "Git is not installed. Proceeding with installation..."
-        & LogMessage "Git is not installed. Proceeding with installation..."
+        LogMessage -message  "Git is not installed. Proceeding with installation..." -logFile $logFile
     }
 
-    & LogMessage "Downloading Git installer..."
+    LogMessage -message  "Downloading Git installer..." -logFile $logFile
     try {
         Invoke-WebRequest -Uri $url -OutFile $output
     } catch {
-        & LogMessage "Error downloading Git installer: $_"
+        LogMessage -message  "Error downloading Git installer: $_" -logFile $logFile
         Write-Output "Error: Failed to download Git installer. Check the log for details."
         return
     }
     
-    & LogMessage "Installing Git..."
+    LogMessage -message  "Installing Git..." -logFile $logFile
     try {
         Start-Process -FilePath $output -Args "/VERYSILENT" -Wait -NoNewWindow
     } catch {
-        & LogMessage "Error installing Git: $_"
+        LogMessage -message  "Error installing Git: $_" -logFile $logFile
         Write-Output "Error: Failed to install Git. Check the log for details."
         return
     }
 
-    & LogMessage "Git installation completed successfully."
+    LogMessage -message  "Git installation completed successfully." -logFile $logFile
     Remove-Item -Path $output
 }
 
