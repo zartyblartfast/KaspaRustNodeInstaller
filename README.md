@@ -1,45 +1,19 @@
 # KaspaRustNodeInstaller
-Powershell script to simplify installing the required components for the Kaspa Rust Node on Windows
-## SYNOPSIS
-    Installation script for the Rusty Kaspa environment.
 
-## DESCRIPTION
-    This script automates the setup of the necessary development environment for Rusty Kaspa.
-    It installs and configures Git, Protocol Buffers, LLVM, Rust toolchain, and wasm-pack.
-    Additionally, it prepares the system to build and run the Kaspa node.
+## Overview
+This repository contains scripts to automate the installation of the necessary components to run a Kaspa Rust Node on a Windows operating system.
 
-    Default installation directory is 'C:\KaspaNode'. This directory or the one specified by -rootFolder
-    will be used as the root for all installations. Use the -rootFolder parameter to specify a different location.
-    
-    Example: PS> .\installation_script.ps1 -rootFolder "D:\MyKaspaNode"
+## Quick Start Guide
 
-    A batch file named 'rustyKaspa.bat' is created in the root folder for easy startup of the Kaspa node.
-    To run the node, navigate to the root folder, right-click 'rustyKaspa.bat', and select 'Run as administrator'.
-    This ensures all necessary permissions are available for node operation.
+1. **Download and Run the Setup Script**
+   - Download the `setupRunThis.bat` file from [this link](https://github.com/zartyblartfast/KaspaRustNodeInstaller/raw/main/setupRunThis.bat).
+   - Right-click the downloaded file and select "Run as administrator".
 
-    If errors occur during script execution, refer to 'installation_log.txt' in the root folder for detailed logs
-    and error messages that can assist in troubleshooting.
+2. **Running the Kaspa Node**
+   - After the setup completes, navigate to the `C:\KaspaNode` directory.
+   - Find and double-click `RunKaspaNode.bat` to start the Kaspa Node.
 
-    For further details and the latest updates, visit the GitHub repository:
-    https://github.com/kaspanet/rusty-kaspa
+For more detailed instructions and troubleshooting, visit the [documentation](https://docs.example.com).
 
-## EXAMPLE
-    PS> .\installation_script.ps1
-    Runs the installation script using the default root folder ('C:\KaspaNode').
-
-## EXAMPLE
-    PS> .\installation_script.ps1 -rootFolder "D:\MyKaspaNode"
-    Runs the installation script using a custom root folder specified by the user.
-
-## PARAMETER rootFolder
-    Specifies the root directory where the Kaspa node environment will be set up.
-    Default is 'C:\KaspaNode'.
-
-## NOTES
-    Author: Your Name
-    Date: Insert the current date
-    This script requires administrative privileges for some installations.
-
-## LINK
-    GitHub Repository: https://github.com/kaspanet/rusty-kaspa
- 
+## Video Tutorial
+Watch our [video tutorial](https://youtu.be/example) for a step-by-step guide on setting up and running the Kaspa Rust Node.
