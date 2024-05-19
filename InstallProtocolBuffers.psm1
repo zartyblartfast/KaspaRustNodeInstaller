@@ -15,38 +15,38 @@ function InstallProtocolBuffers {
     
     if (Test-Path $protocExePath) {
         Write-Output "Protocol Buffers is already installed."
-        LogMessage "Protocol Buffers is already installed."
+        & LogMessage "Protocol Buffers is already installed."
     } else {
         Write-Output "Protocol Buffers is not installed. Installing now..."
-        LogMessage "Protocol Buffers is not installed. Installing now..."
+        & LogMessage "Protocol Buffers is not installed. Installing now..."
 
         $output = Join-Path -Path $rootFolder -ChildPath "protoc-21.10-win64.zip"
         
-        LogMessage "Downloading Protocol Buffers now..."
+        & LogMessage "Downloading Protocol Buffers now..."
         try {
             Invoke-WebRequest -Uri $url -OutFile $output
         } catch {
-            LogMessage "Error downloading Protocol Buffers: $_"
+            & LogMessage "Error downloading Protocol Buffers: $_"
             Write-Output "Error: Failed to download Protocol Buffers. Check the log for details."
             return
         }
         
         $extractPath = Join-Path -Path $rootFolder -ChildPath "protoc-21.10-win64"
-        LogMessage "Extract path: $extractPath"
+        & LogMessage "Extract path: $extractPath"
 
         try {
             New-Item -ItemType Directory -Force -Path $extractPath
         } catch {
-            LogMessage "Failed to create directory: $extractPath"
+            & LogMessage "Failed to create directory: $extractPath"
             Write-Output "Error: Failed to create directory. Check the log for details."
             return
         }
 
-        LogMessage "Extracting the ZIP file"
+        & LogMessage "Extracting the ZIP file"
         try {
             Expand-Archive -Path $output -DestinationPath $extractPath -Force
         } catch {
-            LogMessage "Error extracting the ZIP file: $_"
+            & LogMessage "Error extracting the ZIP file: $_"
             Write-Output "Error: Failed to extract ZIP file. Check the log for details."
             return
         }
