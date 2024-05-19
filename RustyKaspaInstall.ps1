@@ -102,29 +102,20 @@ if (Test-Path $logFile) {
 LogMessage "Starting script execution."
 LogMessage "Rusty Kaspa Root folder: $rootFolder"
 
-InstallVisualStudioBuildTools -rootFolder $rootFolder
+InstallVisualStudioBuildTools -rootFolder $rootFolder -logFile $logFile
 
-LogMessage "Checking if Git is already installed..."
-try {
-    $gitVersion = git --version
-    Write-Output "Git is already installed: $gitVersion"
-    LogMessage "Git is already installed: $gitVersion"
-} catch {
-    Write-Output "Git is not installed. Installing now..."
-    LogMessage "Git is not installed. Installing now..."
-    Install-Git -rootFolder $rootFolder
-}
+Install-Git -rootFolder $rootFolder -logFile $logFile
 
-InstallProtocolBuffers -rootFolder $rootFolder
+InstallProtocolBuffers -rootFolder $rootFolder -logFile $logFile
 
-InstallLLVM -rootFolder $rootFolder
+InstallLLVM -rootFolder $rootFolder -logFile $logFile
 
-InstallUpdateRust -rootFolder $rootFolder
+InstallUpdateRust -rootFolder $rootFolder -logFile $logFile
 
-InstallWasmPack -rootFolder $rootFolder
+InstallWasmPack -rootFolder $rootFolder -logFile $logFile
 
-InstallWasm32Target -rootFolder $rootFolder
+InstallWasm32Target -rootFolder $rootFolder -logFile $logFile
 
-NewRustyKaspaClone -rootFolder $rootFolder
+NewRustyKaspaClone -rootFolder $rootFolder -logFile $logFile
 
 #Create-BatchFile
