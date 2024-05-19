@@ -1,8 +1,9 @@
-﻿# Clone Rusty Kaspa Module
+# Clone Rusty Kaspa Module
 
 function NewRustyKaspaClone {
     param (
-        [string]$rootFolder = "C:\KaspaNode"
+        [string]$rootFolder,
+        [string]$logFile
     )
 
     write-output "****** New-RustyKaspaClone Function ******"
