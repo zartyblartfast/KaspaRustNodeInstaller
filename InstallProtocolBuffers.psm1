@@ -15,38 +15,38 @@ function InstallProtocolBuffers {
     
     if (Test-Path $protocExePath) {
         Write-Output "Protocol Buffers is already installed."
-        & LogMessage "Protocol Buffers is already installed."
+        LogMessage -message  "Protocol Buffers is already installed." -logFile $logFile
     } else {
         Write-Output "Protocol Buffers is not installed. Installing now..."
-        & LogMessage "Protocol Buffers is not installed. Installing now..."
+        LogMessage -message  "Protocol Buffers is not installed. Installing now..." -logFile $logFile
 
         $output = Join-Path -Path $rootFolder -ChildPath "protoc-21.10-win64.zip"
         
-        & LogMessage "Downloading Protocol Buffers now..."
+        LogMessage -message  "Downloading Protocol Buffers now..." -logFile $logFile
         try {
             Invoke-WebRequest -Uri $url -OutFile $output
         } catch {
-            & LogMessage "Error downloading Protocol Buffers: $_"
+            LogMessage -message  "Error downloading Protocol Buffers: $_" -logFile $logFile
             Write-Output "Error: Failed to download Protocol Buffers. Check the log for details."
             return
         }
         
         $extractPath = Join-Path -Path $rootFolder -ChildPath "protoc-21.10-win64"
-        & LogMessage "Extract path: $extractPath"
+        LogMessage -message  "Extract path: $extractPath" -logFile $logFile
 
         try {
             New-Item -ItemType Directory -Force -Path $extractPath
         } catch {
-            & LogMessage "Failed to create directory: $extractPath"
+            LogMessage -message  "Failed to create directory: $extractPath" -logFile $logFile
             Write-Output "Error: Failed to create directory. Check the log for details."
             return
         }
 
-        & LogMessage "Extracting the ZIP file"
+        LogMessage -message  "Extracting the ZIP file" -logFile $logFile
         try {
             Expand-Archive -Path $output -DestinationPath $extractPath -Force
         } catch {
-            & LogMessage "Error extracting the ZIP file: $_"
+            LogMessage -message  "Error extracting the ZIP file: $_" -logFile $logFile
             Write-Output "Error: Failed to extract ZIP file. Check the log for details."
             return
         }
