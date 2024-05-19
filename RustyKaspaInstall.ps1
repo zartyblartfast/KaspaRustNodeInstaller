@@ -9,60 +9,8 @@ $logFile = Join-Path -Path $rootFolder -ChildPath "installation_log.txt"
 $headerTextPath = Join-Path -Path $rootFolder -ChildPath "header.txt"
 
 
-#move-Item -Path $output
-
-# Function to log messages to a log file
-function LogMessage {
-    param([string]$message)
-    Add-Content -Path $logFile -Value "$(Get-Date -Format "yyyy-MM-dd HH:mm:ss"): $message"
-}
-
-# Unified function to add a directory to the system PATH if it is not already present
-function Add-ToSystemPath {
-    param(
-        [string]$pathToAdd
-    )
-
-    write-output "****** Add-ToSystemPath Function ******"
-
-    LogMessage "Checking Path environment variable for: $pathToAdd"
-
-    $systemPath = [System.Environment]::GetEnvironmentVariable("Path", [System.EnvironmentVariableTarget]::Machine)
-    if (-not $systemPath.Split(';').Contains($pathToAdd)) {
-        $newSystemPath = "$systemPath;$pathToAdd"
-        [System.Environment]::SetEnvironmentVariable("Path", $newSystemPath, [System.EnvironmentVariableTarget]::Machine)
-        Write-Output "Added '$pathToAdd' to system PATH."
-        LogMessage "Added '$pathToAdd' to system PATH."
-    } else {
-        Write-Output "'$pathToAdd' is already in system PATH."
-        LogMessage "'$pathToAdd' is already in system PATH."
-    }
-}
-
-function Ensure-CargoAccess {
-
-    write-output "****** Ensure-CargoAccess Function ******"
-
-    $cargoBinPath = "$env:USERPROFILE\.cargo\bin"
-    LogMessage "Checking Cargo path..."
-
-    Add-ToSystemPath -pathToAdd $cargoBinPath
-}
-
-
-function Refresh-Environment {
-
-    write-output "****** Refresh-Environment Function ******"
-
-    $userPath = [System.Environment]::GetEnvironmentVariable("Path", [System.EnvironmentVariableTarget]::User)
-    $systemPath = [System.Environment]::GetEnvironmentVariable("Path", [System.EnvironmentVariableTarget]::Machine)
-    $env:Path = "$userPath;$systemPath"
-    
-    Write-Output "Environment refreshed. Current PATH: $env:Path"
-}
-
-# Import Common Module
-#Import-Module -Name "$rootFolder\Common.psm1"
+# Import Utility Module
+Import-Module -Name "$rootFolder\Common.psm1"
 
 # Import Install Git Module
 Import-Module -Name "$rootFolder\InstallGit.psm1"
@@ -103,8 +51,8 @@ if (Test-Path $logFile) {
     Remove-Item $logFile
 }
 
-LogMessage "Starting script execution."
-LogMessage "Rusty Kaspa Root folder: $rootFolder"
+LogMessage  -message "Starting script execution." -logFile $logFile
+LogMessage  -message "Rusty Kaspa Root folder: $rootFolder" -logFile $logFile
 
 InstallVisualStudioBuildTools -rootFolder $rootFolder -logFile $logFile
 
