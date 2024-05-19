@@ -61,8 +61,8 @@ function Refresh-Environment {
     Write-Output "Environment refreshed. Current PATH: $env:Path"
 }
 
-# Import Utility Module
-#Import-Module -Name "$rootFolder\Utility.psm1"
+# Import Common Module
+#Import-Module -Name "$rootFolder\Common.psm1"
 
 # Import Install Git Module
 Import-Module -Name "$rootFolder\InstallGit.psm1"
@@ -76,10 +76,8 @@ Import-Module -Name "$rootFolder\InstallLLVM.psm1"
 # Import the RustInstaller module
 Import-Module -Name "$rootFolder\RustInstaller.psm1"
 
-
 # Import the Install Wasm Pack module
 Import-Module -Name "$rootFolder\InstallWasmPack.psm1"
-
 
 # Import the Install Wasm32 Target module
 Import-Module -Name "$rootFolder\InstallWasm32Target.psm1"
