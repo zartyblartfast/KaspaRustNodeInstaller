@@ -13,14 +13,14 @@ function NewRustyKaspaClone {
 
     if (Test-Path $destinationPath) {
         Write-Output "The repository directory already exists: $destinationPath"
-        & LogMessage "The repository directory already exists: $destinationPath"
+        LogMessage -message  "The repository directory already exists: $destinationPath" -logFile $logFile
     } else {
         Write-Output "Cloning the Rusty Kaspa repository..."
-        & LogMessage "Cloning the Rusty Kaspa repository..."
+        LogMessage -message  "Cloning the Rusty Kaspa repository..." -logFile $logFile
 
         git clone $repoUrl $destinationPath 2>$null
         Write-Output "Repository cloned successfully to $destinationPath"
-        & LogMessage "Repository cloned successfully to $destinationPath"
+        LogMessage -message  "Repository cloned successfully to $destinationPath" -logFile $logFile
     }
 
     Set-Location -Path $destinationPath
