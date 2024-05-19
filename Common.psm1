@@ -1,4 +1,4 @@
-# Utility Module
+# Common Module
 
 # Function to log messages to a log file
 function LogMessage {
