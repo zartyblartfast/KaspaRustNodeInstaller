@@ -1,7 +1,8 @@
 # Function to install wasm-pack using Cargo
 function InstallWasmPack {
     param (
-        [string]$rootFolder
+        [string]$rootFolder,
+        [string]$logFile
     )
     Write-Output "****** InstallWasmPack Function ******"
 
