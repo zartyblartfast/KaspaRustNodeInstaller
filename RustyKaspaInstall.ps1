@@ -11,6 +11,11 @@ $headerTextPath = Join-Path -Path $rootFolder -ChildPath "header.txt"
 
 #move-Item -Path $output
 
+# Function to log messages to a log file
+function LogMessage {
+    param([string]$message)
+    Add-Content -Path $logFile -Value "$(Get-Date -Format "yyyy-MM-dd HH:mm:ss"): $message"
+}
 
 # Unified function to add a directory to the system PATH if it is not already present
 function Add-ToSystemPath {
@@ -57,7 +62,7 @@ function Refresh-Environment {
 }
 
 # Import Utility Module
-Import-Module -Name "$rootFolder\Utility.psm1"
+#Import-Module -Name "$rootFolder\Utility.psm1"
 
 # Import Install Git Module
 Import-Module -Name "$rootFolder\InstallGit.psm1"
