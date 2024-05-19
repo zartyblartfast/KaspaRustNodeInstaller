@@ -64,8 +64,8 @@ set "NAME9=%DIRECTORY%\InstallWasmPack.psm1"
 set "FILE10=https://raw.githubusercontent.com/zartyblartfast/KaspaRustNodeInstaller/main/RustInstaller.psm1"
 set "NAME10=%DIRECTORY%\RustInstaller.psm1"
 
-set "FILE11=https://raw.githubusercontent.com/zartyblartfast/KaspaRustNodeInstaller/main/Utility.psm1"
-set "NAME11=%DIRECTORY%\Utility.psm1"
+set "FILE11=https://raw.githubusercontent.com/zartyblartfast/KaspaRustNodeInstaller/main/Common.psm1"
+set "NAME11=%DIRECTORY%\Common.psm1"
 
 set "FILE12=https://raw.githubusercontent.com/zartyblartfast/KaspaRustNodeInstaller/main/ascii_art.txt"
 set "NAME12=%DIRECTORY%\ascii_art.txt"
