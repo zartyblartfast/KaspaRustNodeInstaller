@@ -1,7 +1,8 @@
 # Install Protocol Buffers Module
 function InstallProtocolBuffers {
     param (
-        [string]$rootFolder
+        [string]$rootFolder,
+        [string]$logFile
     )
     write-output "****** Install-ProtocolBuffers Function ******"
 
