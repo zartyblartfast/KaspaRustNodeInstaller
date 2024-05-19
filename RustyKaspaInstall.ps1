@@ -58,6 +58,7 @@ function Refresh-Environment {
 
 # Import Utility Module
 Import-Module -Name "$rootFolder\Utility.psm1"
+
 # Import Install Git Module
 Import-Module -Name "$rootFolder\InstallGit.psm1"
 
