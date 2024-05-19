@@ -1,7 +1,8 @@
 # Install Git Module
 function Install-Git {
     param (
-        [string]$rootFolder = "C:\KaspaNode"
+        [string]$rootFolder,
+        [string]$logFile
     )
     write-output "****** Install-Git Function ******"
 
