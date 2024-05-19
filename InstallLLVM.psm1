@@ -1,7 +1,8 @@
 # Function to install LLVM and configure environment variables
 function InstallLLVM {
     param (
-        [string]$rootFolder
+        [string]$rootFolder,
+        [string]$logFile
     )
     write-output "****** Install-LLVM Function ******"
 
