@@ -15,22 +15,22 @@ function InstallWasmPack {
         try {
             $wasmPackVersion = & $wasmPackExecutable --version
             Write-Output "wasm-pack is already installed: $wasmPackVersion."
-            LogMessage "wasm-pack is already installed: $wasmPackVersion."
+            & LogMessage "wasm-pack is already installed: $wasmPackVersion."
         } catch {
             Write-Output "Error checking wasm-pack version: $_"
-            LogMessage "Error checking wasm-pack version: $_"
+            & LogMessage "Error checking wasm-pack version: $_"
         }
     } else {
         Write-Output "wasm-pack is not installed. Installing now..."
-        LogMessage "wasm-pack is not installed. Installing now..."
+        & LogMessage "wasm-pack is not installed. Installing now..."
         try {
             $cargoExecutable = Join-Path -Path $env:USERPROFILE -ChildPath ".cargo\bin\cargo.exe"
             $null = & $cargoExecutable install wasm-pack 2>&1
             Write-Output "wasm-pack installation attempted."
-            LogMessage "wasm-pack installation attempted."
+            & LogMessage "wasm-pack installation attempted."
         } catch {
             Write-Output "wasm-pack installation failed: $_"
-            LogMessage "wasm-pack installation failed: $_"
+            & LogMessage "wasm-pack installation failed: $_"
         }
     }
 }
