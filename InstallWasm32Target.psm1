@@ -14,17 +14,17 @@ function InstallWasm32Target {
     if (Test-Path $rustupPath) {
         try {
             Write-Output "Adding wasm32-unknown-unknown target..."
-            LogMessage "Adding wasm32-unknown-unknown target..."
+            & LogMessage "Adding wasm32-unknown-unknown target..."
             & $rustupPath target add wasm32-unknown-unknown 2>$null
             Write-Output "wasm32-unknown-unknown target added successfully"
-            LogMessage "wasm32-unknown-unknown target added successfully: $rustupPath."
+            & LogMessage "wasm32-unknown-unknown target added successfully: $rustupPath."
         } catch {
             Write-Output "Failed to add wasm32-unknown-unknown target: $_"
-            LogMessage "Failed to add wasm32-unknown-unknown target: $_"
+            & LogMessage "Failed to add wasm32-unknown-unknown target: $_"
         }
     } else {
         Write-Output "Rust toolchain is not installed properly or rustup is not available."
-        LogMessage "Rust toolchain is not installed properly or rustup is not available."
+        & LogMessage "Rust toolchain is not installed properly or rustup is not available."
     }
 }
 Export-ModuleMember -Function InstallWasm32Target
