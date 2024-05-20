@@ -14,7 +14,8 @@ Export-ModuleMember -Function LogMessage
 # Unified function to add a directory to the system PATH if it is not already present
 function Add-ToSystemPath {
     param(
-        [string]$pathToAdd
+        [string]$pathToAdd,
+        [string]$logfile
     )
 
     write-output "****** Add-ToSystemPath Function ******"
@@ -36,6 +37,9 @@ Export-ModuleMember -Function Add-ToSystemPath
 
 
 function Ensure-CargoAccess {
+    param(
+        [string]$logfile
+    )
 
     write-output "****** Ensure-CargoAccess Function ******"
 
@@ -60,12 +64,11 @@ function Refresh-Environment {
 Export-ModuleMember -Function Refresh-Environment 
 
 function CopyFileToDesktop {
-
-    write-output "****** CopyFileToDesktop Function ******"
     param(
         [string]$filePath,
         [string]$logFile
     )
+    write-output "****** CopyFileToDesktop Function ******"
 
     if (-not (Test-Path $filePath)) {
         Write-Output "Warning: The file specified does not exist: $filePath"
