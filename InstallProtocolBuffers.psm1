@@ -54,7 +54,7 @@ function InstallProtocolBuffers {
         Remove-Item -Path $output
     }
 
-    Add-ToSystemPath -pathToAdd (Join-Path -Path $rootFolder -ChildPath "protoc-21.10-win64\\bin")
+    Add-ToSystemPath -pathToAdd (Join-Path -Path $rootFolder -ChildPath "protoc-21.10-win64\\bin")  -logFile $logFile
 }
 
 Export-ModuleMember -Function InstallProtocolBuffers
