@@ -9,7 +9,7 @@ function InstallWasmPack {
     $wasmPackExecutable = Join-Path -Path $env:USERPROFILE -ChildPath ".cargo\bin\wasm-pack.exe"
     
     Write-Output "wasmPackExecutable: $wasmPackExecutable"
-    Ensure-CargoAccess
+    Ensure-CargoAccess -logFile $logFile
 
     if (Test-Path $wasmPackExecutable) {
         try {
