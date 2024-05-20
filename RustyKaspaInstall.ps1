@@ -70,4 +70,6 @@ InstallWasm32Target -rootFolder $rootFolder -logFile $logFile
 
 NewRustyKaspaClone -rootFolder $rootFolder -logFile $logFile
 
+CopyFileToDesktop -filePath "$rootFolder\RunKaspaNode.bat" -logFile $logFile
+
 #Create-BatchFile
