@@ -8,7 +8,6 @@ function LogMessage {
     )
     Add-Content -Path $logFile -Value "$(Get-Date -Format "yyyy-MM-dd HH:mm:ss"): $message"
 }
-
 Export-ModuleMember -Function LogMessage
 
 
@@ -33,7 +32,6 @@ function Add-ToSystemPath {
         LogMessage  -message  "'$pathToAdd' is already in system PATH." -logFile $logFile
     }
 }
-
 Export-ModuleMember -Function Add-ToSystemPath
 
 
@@ -46,7 +44,6 @@ function Ensure-CargoAccess {
 
     Add-ToSystemPath -pathToAdd $cargoBinPath
 }
-
 Export-ModuleMember -Function Ensure-CargoAccess 
 
 
@@ -60,5 +57,34 @@ function Refresh-Environment {
     
     Write-Output "Environment refreshed. Current PATH: $env:Path"
 }
-
 Export-ModuleMember -Function Refresh-Environment 
+
+function CopyFileToDesktop {
+    param(
+        [string]$filePath,
+        [string]$logFile
+    )
+
+    if (-not (Test-Path $filePath)) {
+        Write-Output "Warning: The file specified does not exist: $filePath"
+         LogMessage -message "Warning: The file specified does not exist: $filePath" -logFile $logFile
+        return
+    } else {
+
+        $desktopPath = [Environment]::GetFolderPath("Desktop")
+        $fileName = Split-Path $filePath -Leaf
+
+        $copyToPath = Join-Path $desktopPath $fileName
+
+        try {
+            Copy-Item $filePath -Destination $copyToPath 
+            Write-Output "Copied the specified file to Desktop: $filePath"
+            LogMessage -message "Copied the specified file to Desktop: $filePath" -logFile $logFile
+        } catch {
+            $errorMessage = $_.Exception.Message
+            Write-Output "Failed to copy the specified file to Desktop: $filePath. Error: $errorMessage"
+            LogMessage -message "Failed to copy the specified file to Desktop: $filePath. Error: $errorMessage" -logFile $logFile
+        }
+    }
+}
+Export-ModuleMember -Function CopyFileToDesktop
