@@ -67,7 +67,7 @@ function InstallLLVM {
     LogMessage -message  "Set LIBCLANG_PATH and add LLVM bin to PATH: $llvmBinPath" -logFile $logFile
     [Environment]::SetEnvironmentVariable("LIBCLANG_PATH", $llvmBinPath, [EnvironmentVariableTarget]::Machine)
 
-    Add-ToSystemPath -pathToAdd $llvmBinPath
+    Add-ToSystemPath -pathToAdd $llvmBinPath -logFile $logFile
 }
 
 Export-ModuleMember -Function InstallLLVM
