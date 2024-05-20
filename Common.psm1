@@ -46,7 +46,7 @@ function Ensure-CargoAccess {
     $cargoBinPath = "$env:USERPROFILE\.cargo\bin"
     LogMessage -message "Checking Cargo path..." -logFile $logFile
 
-    Add-ToSystemPath -pathToAdd $cargoBinPath
+    Add-ToSystemPath -pathToAdd $cargoBinPath -logfile $logfile
 }
 Export-ModuleMember -Function Ensure-CargoAccess 
 
