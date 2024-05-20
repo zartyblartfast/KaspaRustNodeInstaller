@@ -60,6 +60,8 @@ function Refresh-Environment {
 Export-ModuleMember -Function Refresh-Environment 
 
 function CopyFileToDesktop {
+
+    write-output "****** CopyFileToDesktop Function ******"
     param(
         [string]$filePath,
         [string]$logFile
