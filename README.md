@@ -15,8 +15,7 @@ This repository contains scripts to automate the installation of the necessary c
 2. **Running the Kaspa Node**
    - After the setup completes, run/double-click `RunKaspaNode.bat` from the Desktop or the `C:\KaspaNode` directory.
 
-For more detailed instructions and troubleshooting, visit the [documentation](https://docs.google.com/document/d/11wZsCbHa9IBtuR0LNqy6oi-88kGBoz_aUVfwQAd4JXA/edit?usp=sharing)
-
+For detailed documentation, please refer to the <a href="https://docs.google.com/document/d/11wZsCbHa9IBtuR0LNqy6oi-88kGBoz_aUVfwQAd4JXA/edit?usp=sharing" target="_blank">documentation</a>
 
 ## Video Tutorial
 Watch our [video tutorial](https://youtu.be/example) for a step-by-step guide on setting up and running the Kaspa Rust Node.
