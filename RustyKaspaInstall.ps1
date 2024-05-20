@@ -5,7 +5,7 @@ param(
 )
 
 # Define the log file path
-$logFile = Join-Path -Path $rootFolder -ChildPath "installation_log.txt"
+$logFile = Join-Path -Path $rootFolder -ChildPath "installation_log"
 $headerTextPath = Join-Path -Path $rootFolder -ChildPath "header.txt"
 
 
