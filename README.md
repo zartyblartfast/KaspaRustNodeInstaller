@@ -7,7 +7,7 @@ This repository contains scripts to automate the installation of the necessary c
 
 1. **Download and Run the Setup Script**
    - Download [setupRunThis.bat](https://github.com/zartyblartfast/KaspaRustNodeInstaller/raw/main/setupRunThis.bat)
-     **Note:** To download the file, right-click the link and choose "Save link as..."
+       **Note:** To download the file, right-click the link and choose "Save link as..."
      
    - Right-click the downloaded file and select "Run as administrator".
 
